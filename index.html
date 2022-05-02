@@ -11,9 +11,11 @@
     //function that prompts player choice and returns it
     function userPlay(){
         let playerChoice = "";
-        while (playerChoice !== "rock" &&
+        while (
+            playerChoice !== "rock" &&
             playerChoice !== "paper" &&
-            playerChoice !== "scissors"){
+            playerChoice !== "scissors"
+            ) {
             //User enters choice
             playerChoice = prompt("Enter rock, paper, or scissors").toLowerCase();
         }
