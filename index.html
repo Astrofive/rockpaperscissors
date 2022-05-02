@@ -14,8 +14,8 @@
         while (playerChoice !== "rock" &&
             playerChoice !== "paper" &&
             playerChoice !== "scissors"){
+            //User enters choice
             playerChoice = prompt("Enter rock, paper, or scissors").toLowerCase();
-            
         }
         return playerChoice;
     }
@@ -29,7 +29,9 @@
 
 
     //Function that plays round
-    function playRound(playerSelection, computerSelection){
+    function playRound(){
+        let playerSelection = userPlay();
+        let computerSelection = computerPlay();
         if (playerSelection == "rock") {
                 switch (computerSelection) {
                     case "rock": return ("Tie! Rock ties with rock"); 
@@ -61,6 +63,9 @@
             }
         }
     }
+
+    
+    console.log(playRound());
 
 </script>
 <body>
