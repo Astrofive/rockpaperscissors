@@ -7,16 +7,56 @@
     <title>Rock Paper Scissors</title>
 </head>
 <script>
-    const options = ["Rock", "Paper", "Scissors"];
+    const options = ["rock", "paper", "scissors"];
     
     function computerPlay(){
         let choice = Math.floor(Math.random()*3);
         return options[choice];
     }
-    console.log("Computer's choice is " + computerPlay());
 
-    let playerChoice = options[0];
+    let computerChoice = computerPlay();
+    console.log("Computer's choice is " + computerChoice);
+
+    let playerChoice = "";
+    while (playerChoice !== "rock" &&
+           playerChoice !== "paper" &&
+           playerChoice !== "scissors"){
+        playerChoice = prompt("Enter rock, paper, or scissors").toLowerCase();
+        
+    }
     console.log("Player choice is " + playerChoice);
+
+    //win & lose logic
+    if (playerChoice == "rock") {
+        switch (computerChoice) {
+            case "rock": console.log("Tie! Rock ties with rock"); 
+            break;
+            case "paper": console.log("You lose! Rock loses to paper")
+            break;
+            case "scissors": console.log("You win! Rock beats scissors")
+            break;
+        }
+    }
+    if (playerChoice == "paper") {
+        switch (computerChoice) {
+            case "rock": console.log("You win! Paper beats rock"); 
+            break;
+            case "paper": console.log("Tie! Paper ties with paper")
+            break;
+            case "scissors": console.log("You lose! Paper loses to scissors")
+            break;
+        }
+    }
+    if (playerChoice == "scissors") {
+        switch (computerChoice) {
+            case "rock": console.log("You lose! Scissors lose to rock"); 
+            break;
+            case "paper": console.log("You win! Scissors beat paper")
+            break;
+            case "scissors": console.log("Tie! Scissors tie with scissors")
+            break;
+        }
+    }
 
 </script>
 <body>
