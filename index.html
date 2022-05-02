@@ -9,14 +9,6 @@
 <script>
     const options = ["rock", "paper", "scissors"];
     
-    function computerPlay(){
-        let choice = Math.floor(Math.random()*3);
-        return options[choice];
-    }
-
-    let computerChoice = computerPlay();
-    console.log("Computer's choice is " + computerChoice);
-
     let playerChoice = "";
     while (playerChoice !== "rock" &&
            playerChoice !== "paper" &&
@@ -25,6 +17,14 @@
         
     }
     console.log("Player choice is " + playerChoice);
+    
+    function computerPlay(){
+        let choice = Math.floor(Math.random()*3);
+        return options[choice];
+    }
+
+    let computerChoice = computerPlay();
+    console.log("Computer's choice is " + computerChoice);
 
     //win & lose logic
     if (playerChoice == "rock") {
