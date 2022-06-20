@@ -27,12 +27,7 @@
 
     rpsbuttons.forEach((button) => {
         button.addEventListener("click", () => {
-            // result.textContent = playRound(button.id);
-            result.textContent = playRound(button.id)[1];
-            if (playRound(button.id)[0] == "player"){
-                userscore++;
-            }
-            userscore.textContent = playRound(button.id)[0];
+            playRound(button.id , computerPlay()); //plays round where user button press is button.id and computerPlay determines computer selection
         });
     });
 
@@ -46,46 +41,24 @@
 
 
     //Function that plays round
-    function playRound(playerSelection){
-        let computerSelection = computerPlay();
-        let winner = "";
-        let message = "";
-
-        console.log(playerSelection + computerSelection);
-
-        if (playerSelection == "rock") {
-                switch (computerSelection) {
-                    case "rock": return ("Tie! Rock ties with rock"); 
-                    break;
-                    case "paper": return ("You lose! Rock loses to paper")
-                    break;
-                    case "scissors": 
-                        winner = "player";
-                        message = "You win! Rock beats scissors";
-                    break;
-                }
-            }
-        if (playerSelection == "paper") {
-            switch (computerSelection) {
-                case "rock": return ("You win! Paper beats rock"); 
+    function playRound(playerSelection, computerSelection){
+        switch (playerSelection + computerSelection) {
+            case "rockrock":
+            case "paperpaper":
+            case "scissorsscissors":
+                result.textContent = "TIE! You chose " + playerSelection + " and computer chose " + computerSelection;
                 break;
-                case "paper": return ("Tie! Paper ties with paper")
+            case "rockscissors":
+            case "paperrock":
+            case "scissorspaper":
+                result.textContent = "You WIN! You chose " + playerSelection + " and computer chose " + computerSelection;
                 break;
-                case "scissors": return ("You lose! Paper loses to scissors")
+            case "rockpaper":
+            case "paperscissors":
+            case "scissorsrock":
+                result.textContent = "You LOSE! You chose " + playerSelection + " and computer chose " + computerSelection;
                 break;
-            }
         }
-        if (playerSelection == "scissors") {
-            switch (computerSelection) {
-                case "rock": return ("You lose! Scissors lose to rock"); 
-                break;
-                case "paper": return ("You win! Scissors beat paper")
-                break;
-                case "scissors": return ("Tie! Scissors tie with scissors")
-                break;
-            }
-        }
-        return [winner, message];
     }
     
 
