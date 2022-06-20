@@ -6,21 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
 </head>
+<body>
+    <h1>Welcome!</h1>
+    <div id="rpsbuttons">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
+</body>
 <script>
+
+    const rpsbuttons = document.querySelectorAll('button');
     
-    //function that prompts player choice and returns it
-    function userPlay(){
-        let playerChoice = "";
-        while (
-            playerChoice !== "rock" &&
-            playerChoice !== "paper" &&
-            playerChoice !== "scissors"
-            ) {
-            //User enters choice
-            playerChoice = prompt("Enter rock, paper, or scissors").toLowerCase();
-        }
-        return playerChoice;
-    }
+    rpsbuttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            console.log(playRound(button.id));
+        });
+    });
 
     
     //Function that returns random computer choice
@@ -32,8 +34,7 @@
 
 
     //Function that plays round
-    function playRound(){
-        let playerSelection = userPlay();
+    function playRound(playerSelection){
         let computerSelection = computerPlay();
         if (playerSelection == "rock") {
                 switch (computerSelection) {
@@ -66,18 +67,7 @@
             }
         }
     }
-
-    function game(){
-        for (i = 0; i < 5; i++){
-            console.log(playRound());
-        }
-    }
-
-    game();
     
 
 </script>
-<body>
-    <h1>Welcome</h1>
-</body>
 </html>
