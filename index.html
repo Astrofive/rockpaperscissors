@@ -13,14 +13,26 @@
         <button id="paper">Paper</button>
         <button id="scissors">Scissors</button>
     </div>
+    <div id="result"><h3>Result goes here</h3></div>
+    <div id="scoreboard">
+        <h3 id="userscore">User score: <span>0</span></h3>
+        <h3 id="computerscore">Computer score: <span>0</span></h3>
+    </div>
 </body>
 <script>
 
     const rpsbuttons = document.querySelectorAll('button');
-    
+    let result = document.querySelector('#result h3');
+    let userscore = document.querySelector('#userscore span');
+
     rpsbuttons.forEach((button) => {
         button.addEventListener("click", () => {
-            console.log(playRound(button.id));
+            // result.textContent = playRound(button.id);
+            result.textContent = playRound(button.id)[1];
+            if (playRound(button.id)[0] == "player"){
+                userscore++;
+            }
+            userscore.textContent = playRound(button.id)[0];
         });
     });
 
@@ -36,13 +48,20 @@
     //Function that plays round
     function playRound(playerSelection){
         let computerSelection = computerPlay();
+        let winner = "";
+        let message = "";
+
+        console.log(playerSelection + computerSelection);
+
         if (playerSelection == "rock") {
                 switch (computerSelection) {
                     case "rock": return ("Tie! Rock ties with rock"); 
                     break;
                     case "paper": return ("You lose! Rock loses to paper")
                     break;
-                    case "scissors": return ("You win! Rock beats scissors")
+                    case "scissors": 
+                        winner = "player";
+                        message = "You win! Rock beats scissors";
                     break;
                 }
             }
@@ -66,6 +85,7 @@
                 break;
             }
         }
+        return [winner, message];
     }
     
 
