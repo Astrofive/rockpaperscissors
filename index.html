@@ -15,19 +15,32 @@
     </div>
     <div id="result"><h3>Result goes here</h3></div>
     <div id="scoreboard">
-        <h3 id="userscore">User score: <span>0</span></h3>
-        <h3 id="computerscore">Computer score: <span>0</span></h3>
+        <h3 id="userScore">User score: <span>0</span></h3>
+        <h3 id="computerScore">Computer score: <span>0</span></h3>
     </div>
 </body>
+<style>
+    * {
+        /* Dark mode */
+        background-color: rgb(61, 61, 61);
+        color: rgb(221, 221, 221);
+    }
+</style>
 <script>
 
     const rpsbuttons = document.querySelectorAll('button');
     let result = document.querySelector('#result h3');
-    let userscore = document.querySelector('#userscore span');
-
+    let userScore = document.querySelector('#userScore span');
+    let userScoreNum = 0;
+    let computerScore = document.querySelector('#computerScore span');
+    let computerScoreNum = 0;
+    
+    
     rpsbuttons.forEach((button) => {
         button.addEventListener("click", () => {
             playRound(button.id , computerPlay()); //plays round where user button press is button.id and computerPlay determines computer selection
+            userScore.textContent = userScoreNum;
+            computerScore.textContent = computerScoreNum;
         });
     });
 
@@ -51,12 +64,14 @@
             case "rockscissors":
             case "paperrock":
             case "scissorspaper":
-                result.textContent = "You WIN! You chose " + playerSelection + " and computer chose " + computerSelection;
+                result.textContent = "You WIN! You chose " + playerSelection + " and computer chose " + computerSelection
+                userScoreNum++;
                 break;
             case "rockpaper":
             case "paperscissors":
             case "scissorsrock":
                 result.textContent = "You LOSE! You chose " + playerSelection + " and computer chose " + computerSelection;
+                computerScoreNum++;
                 break;
         }
     }
