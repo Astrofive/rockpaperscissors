@@ -35,12 +35,22 @@
     let computerScore = document.querySelector('#computerScore span');
     let computerScoreNum = 0;
     
-    
+
     rpsbuttons.forEach((button) => {
         button.addEventListener("click", () => {
+            if (userScoreNum == 5 || computerScoreNum == 5) { //reset to 0 if there was a winner before.
+                userScoreNum = 0;
+                computerScoreNum = 0;
+            }
             playRound(button.id , computerPlay()); //plays round where user button press is button.id and computerPlay determines computer selection
             userScore.textContent = userScoreNum;
             computerScore.textContent = computerScoreNum;
+            if (userScoreNum == 5){
+                result.textContent = "User wins the game with 5 points!"
+            }
+            if (computerScoreNum == 5){
+                result.textContent = "Computer wins the game with 5 points!"
+            }
         });
     });
 
